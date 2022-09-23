@@ -30,7 +30,7 @@ Open VS Code of the client folder and create the app for the Zadatak.pdf require
 ## Create Login page
 
 Login page in which you have two inputs (username, password) and a submit button.
-Users you can login with the users:
+Users you can login with:
 
     {
         username: "fazi",
