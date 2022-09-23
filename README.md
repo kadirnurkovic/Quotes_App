@@ -27,7 +27,7 @@ Open VS Code of the client folder and create the app for the Zadatak.pdf require
 
 # Additional tasks:
 
-## Create Login page
+## 1. Create Login page
 
 Login page in which you have two inputs (username, password) and a submit button.
 Users you can login with:
@@ -49,25 +49,25 @@ Users you can login with:
         password: "1234",
     }
 
-## Make Login request
+### Make Login request
 
     Post http://localhost:8000/sessions
 
-## Request body:
+### Request body:
 
     {
         "username":"zika",
         "password": "1234"
     }
 
-## Request response:
+### Request response:
 
     {
         "accessToken": "yuim98oq-e275-45a2-bc2e-b3098036d655"
     }
 
-## Add Logout button on the quotes page
-## Create logout logic on the logout button
+## 2. Add Logout button on the quotes page
+## 3. Create logout logic on the logout button
 
 # Requests that require access token in the header:
 
