@@ -86,3 +86,15 @@ Users you can login with:
     POST http://localhost:8000/quotes/:id/downvote
     
     DELETE http://localhost:8000/quotes/:id/downvote
+
+#Example of the request that uses an accessToken:
+
+  const accessToken = "yuim98oq-e275-45a2-bc2e-b3098036d655";
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/quotes", {
+        headers: { Authorization: "Bearer " + accessToken },
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log);
+  }, []);
