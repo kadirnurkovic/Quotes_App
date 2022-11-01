@@ -1,0 +1,8 @@
+.login-class{
+    display: flex;
+    flex-direction: column;
+}
+.inputs-class{
+    display: flex;
+    flex-direction: column;
+}

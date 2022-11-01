@@ -1,7 +1,9 @@
+import Login from './components/LoginPage/Login'
+
 function App() {
   return (
     <div>
-      App Works!
+      <Login />
     </div>
   );
 }
