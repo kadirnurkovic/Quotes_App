@@ -4,11 +4,11 @@ import "./Login.css";
 import axios from "axios";
 import { useContext } from "react";
 import { QuotesContext } from "../../Context/Context";
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const { token, setToken } = useContext(QuotesContext);
-
+  const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,7 +29,14 @@ export default function Login() {
       .then((response) => {
         console.log(response.data);
         setToken(response.data.accessToken);
-      }).then((data) => localStorage.setItem("token" , token))
+        localStorage.setItem("token" , response.data.accessToken);
+        navigate("/quotespage");
+        console.log(response.data.accessToken);
+      })
+      .catch((err) => {
+        setToken(null);
+        localStorage.setItem("token", null);
+      })
   };
 
   return (
@@ -50,10 +57,7 @@ export default function Login() {
           </div>
           
           <button type="submit" onClick={submit}>
-          {token !== null ? ( 
-          <Link to="/quotespage">
-            Log In
-          </Link>) : 'Log in'} 
+          Login
           </button>
           
         </form>
