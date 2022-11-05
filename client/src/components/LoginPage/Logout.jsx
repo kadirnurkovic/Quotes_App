@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { QuotesContext } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
-import QuotesPage from "./QuotesPage/QuotesPage"
-import "./Logout.css"
+import QuotesPage from "./QuotesPage/QuotesPage";
+import "./Logout.css";
 
 export default function Logout() {
   const navigate = useNavigate();
@@ -15,10 +15,14 @@ export default function Logout() {
   };
   return (
     <div className="inner-elements">
-      <button className="logout-button-class" onClick={logout}>
-        Logout
-      </button>
-      <QuotesPage />
+      <div>
+        <button className="logout-button-class" onClick={logout}>
+          Logout
+        </button>
+      </div>
+      <div>
+        <QuotesPage />
+      </div>
     </div>
   );
 }

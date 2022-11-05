@@ -1,13 +1,14 @@
 .content-class{
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 90%;
     margin: auto;
 }
 .quote-class{
     background-color: grey; 
     height: 10vh;
     display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
@@ -19,4 +20,8 @@
     justify-content: flex-end;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+.vote-class{
+    display: flex;
+    justify-content: space-around;
 }
