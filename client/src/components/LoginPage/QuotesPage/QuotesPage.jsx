@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useContext from 'react';
 import { QuotesContext } from '../../../Context/Context';
+import './QuotesPage.css'
 
 export default function QuotesList() {
     const [quotes, setQuotes] = useState([]);
@@ -26,9 +27,10 @@ export default function QuotesList() {
     return(
         <div>
            {quotes.map((el) => (
-            <div key={el.id}>
-                <div>{el.content}</div>
-                <div>{el.tags.map((tag) => (<div>{tag}</div>))}</div>
+            <div key={el.id} className="content-class">
+                <div className="quote-class">{el.content}</div>
+                {/* <div>{el.tags.map((tag) => (<div>{tag}</div>))}</div> */}
+                <div className="decorative-class">{el.author}</div>
             </div>
            ))}
         </div>
