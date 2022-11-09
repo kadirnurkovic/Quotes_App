@@ -1,25 +1,147 @@
-import { useState } from "react";
-import {ArrowUpIcon, ArrowDownIcon} from "@chakra-ui/icons"
-import "./QuoteVotes.css"
+import { useState, useContext } from "react";
+import { QuotesContext } from "../../../Context/Context";
+import { ArrowUpIcon, ArrowDownIcon } from "@chakra-ui/icons";
+import "./QuoteVotes.css";
+import axios from "axios";
+import { useEffect } from "react";
 
-export default function QuotesScore({ getQuotes, upVote, downVote }) {
+export default function QuotesScore({ el }) {
+  const { token } = useContext(QuotesContext);
+  const AT = token;
+  const [upVotes, setUpvotes] = useState(el.upvotesCount);
+  const [voteArrow, setVoteArrow] = useState(el.givenVote);
+  const [downVotes, setDownVotes] = useState(el.downvotesCount);
+  const accessToken = "yuim98oq-e275-45a2-bc2e-b3098036d655";
   const numberOfVotes = 100;
-  const groupedVotes = upVote + downVote;
-  const n = numberOfVotes / groupedVotes
-  console.log(n)
-  const procentage = Math.round(n * upVote)
+  const groupedVotes = upVotes + downVotes;
+  console.log(groupedVotes);
+  const n = numberOfVotes / groupedVotes;
+  const procentage = upVotes === 0 ? 0 : Math.round(n * upVotes);
+  console.log(voteArrow);
   const [votes, setVotes] = useState(procentage);
+  const postUpVote = (el) => {
+    axios
+      .post(`http://localhost:8000/quotes/${el.id}/upvote`, null, {
+        headers: {
+          Authorization: "Bearer " + AT,
+        },
+      })
+      .then((res) => {
+        setUpvotes(res.data.upvotesCount);
+        setVoteArrow(res.data.givenVote);
+        console.log(res.data.givenVote);
+        console.log(el);
+      });
+  };
+  const deleteUpVote = (el) => {
+    axios
+      .delete(`http://localhost:8000/quotes/${el.id}/upvote`, {
+        headers: {
+          Authorization: "Bearer " + AT,
+        },
+      })
+      .then((res) => {
+        setUpvotes(res.data.upvotesCount);
+        setVoteArrow(res.data.givenVote);
+        console.log(res.data.givenVote);
+      });
+  };
+  const postDownVote = (el) => {
+    axios
+      .post(`http://localhost:8000/quotes/${el.id}/downvote`, null, {
+        headers: {
+          Authorization: "Bearer " + AT,
+        },
+      })
+      .then((res) => {
+        setDownVotes(res.data.downvotesCount);
+        setVoteArrow(res.data.givenVote);
+      });
+  };
+  const deleteDownVote = (el) => {
+    axios
+      .delete(`http://localhost:8000/quotes/${el.id}/downvote`, {
+        headers: {
+          Authorization: "Bearer " + AT,
+        },
+      })
+      .then((res) => {
+        setDownVotes(res.data.downvotesCount);
+        setVoteArrow(res.data.givenVote);
+      });
+  };
+  const upVoteHandler = () => {
+    if (voteArrow === "upvote") {
+      deleteUpVote(el);
+    } else if (voteArrow === "none") {
+      postUpVote(el);
+    }
+  };
+  const downVoteHandler = () => {
+    if (voteArrow === "downvote") {
+      deleteDownVote(el);
+    } else if (voteArrow === "none") {
+      postDownVote(el);
+    }
+  };
+  useEffect(() => {
+    setVotes(procentage);
+  }, [procentage]);
   return (
     <div className="votes-count">
       <div>
-        <button className="button-class"><ArrowUpIcon/></button>
-        <div>{votes}%</div>
-        <div>
-          {upVote}/{downVote}
+        <div className="buttons">
+          <button
+            style={{
+              color: voteArrow === "upvote" ? "green" : "black",
+              cursor: "pointer",
+            }}
+            className="button-class"
+            onClick={upVoteHandler}
+          >
+            <ArrowUpIcon />
+          </button>
+        </div>
+        <div
+          className="procent"
+          style={{
+            color:
+              votes >= 90
+                ? "green"
+                : votes >= 80 && votes < 90
+                ? "lightgreen"
+                : votes >= 70 && votes < 80
+                ? "#00A36C"
+                : votes >= 60 && votes < 70
+                ? "#F1CB14"
+                : votes >= 50 && votes < 60
+                ? "#EDAA0E"
+                : votes >= 40 && votes < 50
+                ? "#D26C17"
+                : votes >= 10 && votes < 40
+                ? "orange"
+                : votes < 10
+                ? "red"
+                : "",
+          }}
+        >
+          {votes}%
+        </div>
+        <div className="vote">
+          {upVotes}/{downVotes}
         </div>
       </div>
-      <div>
-        <button className="button-class"><ArrowDownIcon/></button>
+      <div className="buttons">
+        <button
+          className="button-class"
+          style={{
+            color: voteArrow === "downvote" ? "red" : "black",
+            cursor: "pointer",
+          }}
+          onClick={downVoteHandler}
+        >
+          <ArrowDownIcon />
+        </button>
       </div>
     </div>
   );

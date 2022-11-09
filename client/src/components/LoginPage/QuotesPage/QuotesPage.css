@@ -3,12 +3,13 @@
     flex-direction: column;
     width: 90%;
     margin: auto;
+    margin-bottom: 20px;
 }
 .quote-class{
     background-color: grey; 
-    height: 10vh;
+    height: 80px;
     display: flex;
-    width: 100%;
+    width: 70%;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
@@ -24,4 +25,9 @@
 .vote-class{
     display: flex;
     justify-content: space-around;
+    gap: 15px;
+}
+.div-pagination{
+    display: flex;
+    justify-content: center;
 }

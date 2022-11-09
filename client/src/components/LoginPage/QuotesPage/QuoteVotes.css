@@ -2,3 +2,21 @@
     border-radius: 10px;
     border: none;
 }
+.votes-count{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.procent{
+    font-size: 1.3rem;
+}
+.vote{
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+}

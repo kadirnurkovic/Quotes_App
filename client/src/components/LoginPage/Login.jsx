@@ -29,37 +29,39 @@ export default function Login() {
       .then((response) => {
         console.log(response.data);
         setToken(response.data.accessToken);
-        localStorage.setItem("token" , response.data.accessToken);
+        localStorage.setItem("token", response.data.accessToken);
         navigate("/quotespage");
         console.log(response.data.accessToken);
       })
       .catch((err) => {
         setToken(null);
         localStorage.setItem("token", null);
-      })
+      });
   };
 
   return (
     <div className="login-class">
       <div>This is Login page</div>
       <div className="inputs-class">
-        <form>
+        <form className="form-class">
           <div>
-            <input type="text" value={userName} onChange={handleUserName} />
+            <input className="i-class"
+            type="text" value={userName} onChange={handleUserName} />
           </div>
           <div>
             <input
+              className="i-class"
               type="password"
               value={password}
               placeholder="password"
               onChange={handlePassword}
             />
           </div>
-          
-          <button type="submit" onClick={submit}>
-          Login
-          </button>
-          
+          <div>
+            <button type="submit" onClick={submit}>
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -1,0 +1,7 @@
+.form-class{
+    display: flex;
+    flex-direction: column;
+}
+.input-author{
+    width: 300px;
+}

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { QuotesContext } from "../../Context/Context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import QuotesPage from "./QuotesPage/QuotesPage";
 import "./Logout.css";
 
@@ -15,10 +15,17 @@ export default function Logout() {
   };
   return (
     <div className="inner-elements">
-      <div>
-        <button className="logout-button-class" onClick={logout}>
-          Logout
-        </button>
+      <div className="buttons-quote">
+        <div>
+          <button className="logout-button-class" onClick={logout}>
+            Logout
+          </button>
+        </div>
+        <div>
+          <Link to="/createquote">
+            <button className="quote-button">Create your Quote</button>
+          </Link>
+        </div>
       </div>
       <div>
         <QuotesPage />
