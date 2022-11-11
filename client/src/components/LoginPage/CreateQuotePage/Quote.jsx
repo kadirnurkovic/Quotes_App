@@ -25,7 +25,7 @@ export default function Quote() {
       },
       {
         headers: {
-          Authorization: "Bearer " + access_token,
+          Authorization: "Bearer " + AT,
         },
       }
     );
@@ -34,34 +34,38 @@ export default function Quote() {
     <div>
       <form
         className="form-class"
-        onSubmit={
-          addQuote
-        }
+        onSubmit={() => (addQuote, navigate("/quotespage"))}
+        
       >
         <label>Enter you author</label>
         <input
           className="input-author"
           type="text"
           placeholder="Author"
-          defaultValue={author}
+          value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
         <label>Enter your quote text</label>
-        <input
+        <textarea
+          className="input-area"
           type="text"
           placeholder="Quote text..."
-          defaultValue={content}
+          rows="20"
+          cols="40"
+          value={content}
           onChange={(e) => setContent(e.target.value)}
         />
         <label>Tags</label>
         <input
+          className="input-tags"
           type="text"
           placeholder="Tags"
-          defaultValue={tags}
+          value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
         <button
           type="submit"
+          className="submit-button"
           onClick={() => (
             setInputContent(content),
             setInputAuthor(author),

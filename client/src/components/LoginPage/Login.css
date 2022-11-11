@@ -17,3 +17,18 @@
     align-items: center;
     gap: 20px;
 }
+.i-class{
+    border-radius: 15px;
+    height: 30px;
+    outline: none;
+}
+.b-class{
+    background-color: blue;
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1px 0px 4px black;
+    color: white;
+    cursor: pointer;
+}

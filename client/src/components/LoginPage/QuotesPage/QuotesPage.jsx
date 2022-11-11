@@ -14,6 +14,11 @@ export default function QuotesList() {
   const numPages = Math.ceil(quotes.length / 5);
   const [page, setPage] = useState(1);
   const access_token = "yuim98oq-e275-45a2-bc2e-b3098036d655";
+  const humor = "universe"
+  const [tagOrder, setTagOrder] = useState("humor");
+  const tagger = (ele) => {
+    setTagOrder(ele.target.value)
+  }
   const handleChange = (event, value) => {
     setPage(value);
     console.log(event, value);
@@ -22,7 +27,7 @@ export default function QuotesList() {
   const numberOfPagesVisited = (page - 1) * quotesPerPage;
   const getQuotesApi = async () => {
     axios
-      .get("http://localhost:8000/quotes", {
+      .get(`http://localhost:8000/quotes?tags=${tagOrder}`, {
         headers: {
           Authorization: "Bearer " + AT,
         },
@@ -38,9 +43,16 @@ export default function QuotesList() {
   useEffect(() => {
     getQuotesApi();
   }, []);
-
   return (
     <div>
+      <select defaultValue="humor" onChange={tagger}
+        >
+        <option value="humor" label="humor">Humor</option>
+        <option value="human nature" label="human nature">Human nature</option>
+        <option value="science" label="science">Science</option>
+        <option value="Philosophy" label="philosophy">Philosophy</option>
+        <option value="universe" label="universe">Universe</option>
+      </select>
       {quotes.map((el) => (
         <div key={el.id} className="content-class">
           <div className="vote-class">
@@ -53,7 +65,7 @@ export default function QuotesList() {
             <div className="quote-class">{el.content}</div>
           </div>
           <div className="decorative-class">{el.author}</div>
-          {/* <div>{el.tags.map((tag) => (<div>{tag}</div>))}</div> */}
+          <div>{el.tags.map((tag) => (<div>{tag}</div>))}</div>
         </div>
       )).slice(numberOfPagesVisited, numberOfPagesVisited + quotesPerPage)}
       <div className='div-pagination'>

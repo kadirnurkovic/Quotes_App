@@ -4,4 +4,25 @@
 }
 .input-author{
     width: 300px;
+    border-radius: 17px;
+}
+.input-area{
+    border-radius: 17px;
+    outline: none;
+    padding: 5px;
+}
+.input-tags{
+    border-radius: 17px;
+    outline: none;
+    border: none;
+}
+.submit-button{
+    background-color: blue;
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1px 0px 4px black;
+    color: white;
+    cursor: pointer;
 }
