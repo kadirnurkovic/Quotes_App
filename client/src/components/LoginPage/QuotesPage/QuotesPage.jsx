@@ -27,9 +27,9 @@ export default function QuotesList() {
   const numberOfPagesVisited = (page - 1) * quotesPerPage;
   const getQuotesApi = async () => {
     axios
-      .get(`http://localhost:8000/quotes?tags=${tagOrder}`, {
+      .get(`http://localhost:8000/quotes`, {
         headers: {
-          Authorization: "Bearer " + AT,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((res) => {
@@ -45,15 +45,15 @@ export default function QuotesList() {
   }, []);
   return (
     <div>
-      <select defaultValue="humor" onChange={tagger}
+      {/* <select defaultValue="humor" onChange={tagger}
         >
         <option value="humor" label="humor">Humor</option>
         <option value="human nature" label="human nature">Human nature</option>
         <option value="science" label="science">Science</option>
         <option value="Philosophy" label="philosophy">Philosophy</option>
         <option value="universe" label="universe">Universe</option>
-      </select>
-      {quotes.map((el) => (
+      </select> */}
+      {quotes?.map((el) => (
         <div key={el.id} className="content-class">
           <div className="vote-class">
             <div>
@@ -61,7 +61,6 @@ export default function QuotesList() {
                 el={el}
               ></QuoteVotes>
             </div>
-
             <div className="quote-class">{el.content}</div>
           </div>
           <div className="decorative-class">{el.author}</div>
