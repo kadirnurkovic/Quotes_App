@@ -51,7 +51,7 @@ export default function Quote() {
           type="text"
           placeholder="Quote text..."
           rows="20"
-          cols="40"
+          cols="50"
           value={content}
           onChange={(e) => setContent(e.target.value)}
         />

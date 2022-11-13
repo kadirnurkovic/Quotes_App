@@ -11,7 +11,6 @@ export default function Logout() {
     setToken(null);
     localStorage.setItem("token", null);
     navigate("/");
-    console.log(token);
   };
   return (
     <div className="inner-elements">
