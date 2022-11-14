@@ -1,20 +1,31 @@
-.form-class{
+
+.new-form-class{
+    height: 450px;
     display: flex;
     flex-direction: column;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0px 0px 4px black;
+    padding: 20px;
+    border-radius: 20px;
+    font-family: 'Roboto', 'sans-serif';
 }
 .input-author{
     width: 300px;
     border-radius: 17px;
+    padding: 5px;
 }
 .input-area{
     border-radius: 17px;
     outline: none;
     padding: 5px;
+    resize: none;
 }
 .input-tags{
     border-radius: 17px;
     outline: none;
     border: none;
+    border-bottom: black solid 1px;
 }
 .submit-button{
     background-color: blue;

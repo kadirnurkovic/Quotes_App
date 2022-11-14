@@ -15,10 +15,10 @@ export default function QuotesList() {
   const [page, setPage] = useState(1);
   const access_token = "yuim98oq-e275-45a2-bc2e-b3098036d655";
   const humor = "universe"
-  const [tagOrder, setTagOrder] = useState("humor");
-  const tagger = (ele) => {
-    setTagOrder(ele.target.value)
-  }
+  // const [tagOrder, setTagOrder] = useState("humor");
+  // const tagger = (ele) => {
+  //   setTagOrder(ele.target.value)
+  // }
   const handleChange = (event, value) => {
     setPage(value);
     console.log(event, value);

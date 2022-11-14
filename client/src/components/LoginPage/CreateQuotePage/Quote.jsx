@@ -37,9 +37,9 @@ export default function Quote() {
     })
   };
   return (
-    <div>
+    <div className="all-inputs">
       <form
-        className="form-class"
+        className="new-form-class"
         onSubmit={(e) => (e.preventDefault() ,addQuote())}
               >
         <label>Enter you author</label>
