@@ -1,6 +1,6 @@
 import "./Quotes.css";
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { QuotesContext } from "../../../Context/Context";
 import axios from "axios";
 
@@ -8,6 +8,7 @@ export default function Quote() {
   const navigate = useNavigate();
   const { token } = useContext(QuotesContext);
   const AT = token;
+  const [loaded, setLoaded] = useState(false);
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [tags, setTags] = useState("");
@@ -15,7 +16,7 @@ export default function Quote() {
   const [inputAuthor, setInputAuthor] = useState();
   const [inputTag, setInputTag] = useState();
   const addQuote = () => {
-    const access_token = "yuim98oq-e275-45a2-bc2e-b3098036d655";
+    // const access_token = "yuim98oq-e275-45a2-bc2e-b3098036d655";
     axios.post(
       `http://localhost:8000/quotes`,
       {
@@ -25,18 +26,22 @@ export default function Quote() {
       },
       {
         headers: {
-          Authorization: "Bearer " + AT,
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       }
-    );
+    ).then((response) => {
+      if(response.data){
+        console.log(response.data)
+        navigate("/quotespage")
+      }
+    })
   };
   return (
     <div>
       <form
         className="form-class"
-        onSubmit={() => (addQuote, navigate("/quotespage"))}
-        
-      >
+        onSubmit={(e) => (e.preventDefault() ,addQuote())}
+              >
         <label>Enter you author</label>
         <input
           className="input-author"
@@ -50,9 +55,9 @@ export default function Quote() {
           className="input-area"
           type="text"
           placeholder="Quote text..."
-          rows="20"
-          cols="50"
           value={content}
+          rows="20"
+          cols="30"
           onChange={(e) => setContent(e.target.value)}
         />
         <label>Tags</label>
@@ -63,6 +68,7 @@ export default function Quote() {
           value={tags}
           onChange={(e) => setTags(e.target.value)}
         />
+        {/* <Link to="/quotespage"> */}
         <button
           type="submit"
           className="submit-button"
@@ -74,6 +80,7 @@ export default function Quote() {
         >
           Add quote
         </button>
+        {/* </Link> */}
       </form>
     </div>
   );

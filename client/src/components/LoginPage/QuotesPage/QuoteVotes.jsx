@@ -16,9 +16,9 @@ export default function QuotesScore({ el }) {
   const groupedVotes = upVotes + downVotes;
   console.log(groupedVotes);
   const n = numberOfVotes / groupedVotes;
-  const procentage = upVotes === 0 ? 0 : Math.round(n * upVotes);
+  const percentage = upVotes === 0 ? 0 : Math.round(n * upVotes);
   console.log(voteArrow);
-  const [votes, setVotes] = useState(procentage);
+  const [votes, setVotes] = useState(percentage);
   const postUpVote = (el) => {
     axios
       .post(`http://localhost:8000/quotes/${el.id}/upvote`, null, {
@@ -85,8 +85,8 @@ export default function QuotesScore({ el }) {
     }
   };
   useEffect(() => {
-    setVotes(procentage);
-  }, [procentage]);
+    setVotes(percentage);
+  }, [percentage]);
   return (
     <div className="votes-count">
       <div>

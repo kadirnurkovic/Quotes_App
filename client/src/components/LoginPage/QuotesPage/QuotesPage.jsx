@@ -64,7 +64,7 @@ export default function QuotesList() {
             <div className="quote-class">{el.content}</div>
           </div>
           <div className="decorative-class">{el.author}</div>
-          <div>{el.tags.map((tag) => (<div>{tag}</div>))}</div>
+          {/* <div>{el.tags.map((tag) => (<div>{tag}</div>))}</div> */}
         </div>
       )).slice(numberOfPagesVisited, numberOfPagesVisited + quotesPerPage)}
       <div className='div-pagination'>

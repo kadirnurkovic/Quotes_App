@@ -41,11 +41,12 @@ export default function Login() {
 
   return (
     <div className="login-class">
-      <div>This is Login page</div>
+      <div>Login page</div>
       <div className="inputs-class">
         <form className="form-class">
           <div>
             <input className="i-class"
+            placeholder="Username"
             type="text" value={userName} onChange={handleUserName} />
           </div>
           <div>
@@ -53,7 +54,7 @@ export default function Login() {
               className="i-class"
               type="password"
               value={password}
-              placeholder="password"
+              placeholder="Password"
               onChange={handlePassword}
             />
           </div>
