@@ -57,7 +57,7 @@ export default function Quote() {
           placeholder="Quote text..."
           value={content}
           rows="20"
-          cols="30"
+          cols="40"
           onChange={(e) => setContent(e.target.value)}
         />
         <label>Tags</label>

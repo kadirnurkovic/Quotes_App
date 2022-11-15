@@ -9,6 +9,7 @@
     padding: 20px;
     border-radius: 20px;
     font-family: 'Roboto', 'sans-serif';
+    gap: 5px;
 }
 .input-author{
     width: 300px;

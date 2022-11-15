@@ -31,7 +31,6 @@ export default function Login() {
         setToken(response.data.accessToken);
         localStorage.setItem("token", response.data.accessToken);
         navigate("/quotespage");
-        console.log(response.data.accessToken);
       })
       .catch((err) => {
         setToken(null);
